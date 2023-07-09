@@ -1,16 +1,38 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <div class="container">
-    <div class="form">
-        <input type="file" accept="*/image" name="image">
-        <button type="submit"></button>
-    </div>
+    {{ data }}
+    <form id="form" method="post" action="/bg-remove" enctype="multipart/form-data">
+        {% csrf_token %}
     <div class="images">
-        <img src="https://intentplanning.ca/wp-content/uploads/2019/01/sample-person.jpg" alt="">
+        {% if imagelink %}
+        <img id="output" src="{{imagelink}}" alt="{{imagelink}}" />
+        <button type="button" onclick="downloadImage()">Download File</button>
+        <script>
+            function downloadImage() {
+                var imagelink = document.getElementById("output").src
+                const link = document.createElement('a');
+                link.href = imagelink;
+                link.download = 'image.jpg'; // Set the desired filename for the downloaded image
+
+                // Simulate a click on the link
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+
+        </script>
+        
+        {% else %}
+        <img id="output" src="../media/static/person.png" alt="" />
 
     </div>
+    <input type="file" accept="*/image" name="image"
+        onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" />
+    <button type="button" onclick="checkAndSubmmit()">Submit</button>
+    {% endif %}
 
+    </form>
 
 </div>
+
 {% endblock %}

@@ -14,12 +14,17 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from ast import pattern
+from bgremover import settings
 from django.contrib import admin
 from django.urls import path
-from remover.views import gotohome,removebgpage
+from django.conf.urls.static import static
+from remover.views import gotohome, removebgpage, download_image
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', gotohome),
     path('bg-remove', removebgpage),
-]
+    # path('/removedbg', removedbg),
+    path('/download-image', download_image),
+]+static(settings.STATIC_URL, document_root=settings.STATIC_URL)

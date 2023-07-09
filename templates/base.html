@@ -7,7 +7,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../media/static/css/base.css">
 </head>
 
 <body>
@@ -16,17 +16,53 @@
             <li>
                 <a href="">Home</a>
             </li>
-
             <li><a href="/bg-remove">Bg Remover</a></li>
             <li> <a href="">Video Downloader</a></li>
         </ul>
     </nav>
+<div class="internet" id="check_internet">
+    <div class="checkInternet">
+        <h1>You are currently Offline So please try again</h1>
+    </div>
+</div>
 
     {% block content %}
 
     {% endblock content %}
-    <div.ho>
-        </div>
+<script>
+    function changeImage(image) {
+        var output = document.getElementById('output')
+        console.log(output.src)
+        console.log(image)
+    }
+    function Internetcheck() {
+        if (window.navigator.onLine) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    {% comment %} Internetcheck(); {% endcomment %}
+
+    function checkAndSubmmit(){
+        if(Internetcheck()){
+            console.log("Online")
+
+            const myform=document.getElementById("myform");
+            form.submit();
+        }
+        else{
+            console.log("Offline")
+
+            console.log(Internetcheck())
+            console.log(document.getElementById("check_internet").style.display);
+            console.log(document.getElementById("check_internet").style="transition:2s;");
+
+            document.getElementById("check_internet").style = "display:flex;";
+        }
+    }
+</script>
 </body>
 
 </html>
