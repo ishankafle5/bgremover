@@ -2,7 +2,7 @@
     "version":2,
     "builds":[
         {
-            "src":"poll/wsgi.py",
+            "src":"bgremover/wsgi.py",
             "use":"@vercel/python",
             "config":{"maxLamdaSize":"15mb","runtime":"python3.10"}
         },{
@@ -20,7 +20,7 @@
         },
         {
             "src":"/(.*)",
-            "dest":"poll/wsgi.py"
+            "dest":"bgremover/wsgi.py"
         }
     ]
 }
