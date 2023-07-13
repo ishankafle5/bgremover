@@ -105,3 +105,9 @@ form button:hover{
     transform:scale(1.1);
     transition:1s;
 }
+
+.images{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
